@@ -46,12 +46,12 @@ var app = new Framework7({
 						});
 				},
 				pageAfterIn: function(e, page){
-					if(!localStorage.userId){
-						page.router.navigate('/login/', { animate: false, reloadAll: true });
-					}
-					else{
-						page.router.navigate('/home/', { animate: false, reloadAll: true });
-					}
+					// if(!localStorage.userId){
+					// 	page.router.navigate('/login/', { animate: false, reloadAll: true });
+					// }
+					// else{
+					// 	page.router.navigate('/home/', { animate: false, reloadAll: true });
+					// }
 				}
 			},
 		},
@@ -572,6 +572,6 @@ var app = new Framework7({
 	}
 });
 
-var mainView = app.views.create('.view-main', { url: '/login/' });
+var mainView = app.views.create('.view-main', { url: '/home/' });
 
 // mainView.router.navigate('/seat/');
