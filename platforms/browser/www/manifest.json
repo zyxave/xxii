@@ -1,11 +1,11 @@
 {
   "background_color": "#FFF",
   "display": "standalone",
-  "name": "helloworld",
-  "short_name": "helloworld",
+  "name": "XXII",
+  "short_name": "XXII",
   "version": "com.phonegap.helloworld",
-  "description": "Hello World sample application that responds to the deviceready event.",
-  "author": "PhoneGap Team",
+  "description": "XXII is a mobile apps for purchasing cinema's tickets.",
+  "author": "zyxave",
   "icons": [],
   "start_url": "index.html",
   "theme_color": "#2196f3"
