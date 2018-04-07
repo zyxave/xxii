@@ -565,10 +565,6 @@ var app = new Framework7({
 				},
 			},
 		},
-		{
-			path: '/test/',
-			url: 'pages/test.html',
-		},
 	],
 	navbar: {
 		hideOnPageScroll: true,
@@ -576,6 +572,6 @@ var app = new Framework7({
 	}
 });
 
-var mainView = app.views.create('.view-main', { url: '/test/' });
+var mainView = app.views.create('.view-main', { url: '/login/' });
 
 // mainView.router.navigate('/seat/');
