@@ -21,18 +21,8 @@ var app = new Framework7({
 			url: 'pages/home.html',
 			on: {
 				pageInit: function(e, page){
-					app.panel.enableSwipe();
 
-					$$('#btnlogout').on('click', function(){
-						app.dialog.confirm("Are you sure?", "Logout", function(){
-							app.dialog.progress();
-							setTimeout(function(){
-								app.dialog.close();
-								localStorage.removeItem('userId');
-								page.router.navigate('/login/', { animate: false, reloadAll: true });
-							}, 500);
-						});
-					});
+					app.panel.enableSwipe();
 
 					app.request.post(app_path + 'movies.php', 
 						{ 
@@ -44,15 +34,29 @@ var app = new Framework7({
 							var html = Template7.compile($$('#t7Home').html())(obj);
 							$$('#listMovies').html(html);
 						});
+
+					if(!sessionStorage.opened){
+						sessionStorage.opened = 'opened';
+						$$('#btnlogout').on('click', function(){
+							app.dialog.confirm("Are you sure?", "Logout", function(){
+								app.dialog.progress();
+								setTimeout(function(){
+									app.dialog.close();
+									localStorage.removeItem('userId');
+									page.router.navigate('/login/', { animate: false, reloadAll: true });
+								}, 500);
+							});
+						});
+					}
 				},
-				pageAfterIn: function(e, page){
-					// if(!localStorage.userId){
-					// 	page.router.navigate('/login/', { animate: false, reloadAll: true });
-					// }
-					// else{
-					// 	page.router.navigate('/home/', { animate: false, reloadAll: true });
-					// }
-				}
+				// pageAfterIn: function(e, page){
+				// 	if(!localStorage.userId){
+				// 		page.router.navigate('/login/', { animate: false, reloadAll: true });
+				// 	}
+				// 	else{
+				// 		page.router.navigate('/home/', { animate: false, reloadAll: true });
+				// 	}
+				// }
 			},
 		},
 		{
@@ -82,7 +86,7 @@ var app = new Framework7({
 
 									if(obj != 0){
 										localStorage.setItem('userId', obj);
-										page.router.navigate('/home/');
+										page.router.navigate('/home/', { reloadAll: true });
 									}
 									else{
 										app.dialog.alert("Invalid username or password!");
@@ -509,10 +513,10 @@ var app = new Framework7({
 										for(var i = 0; i < seat.length; i++){
 											if($$('input[value="' + seat[i] + '"]').parent().hasClass('checked')){
 												if(seatlist == ''){
-													seatlist += studio + seat[i];
+													seatlist += seat[i];
 												}
 												else{
-													seatlist += ', ' + studio + seat[i];
+													seatlist += ', ' + seat[i];
 												}
 											}
 										}
@@ -553,6 +557,7 @@ var app = new Framework7({
 							var context = {
 								title: obj['title'],
 								date: obj['showdate'],
+								studio: studio,
 								showtime: obj['showtime'],
 								seatlist: seatlist,
 								qty: qty,
