@@ -509,10 +509,10 @@ var app = new Framework7({
 										for(var i = 0; i < seat.length; i++){
 											if($$('input[value="' + seat[i] + '"]').parent().hasClass('checked')){
 												if(seatlist == ''){
-													seatlist += seat[i];
+													seatlist += studio + seat[i];
 												}
 												else{
-													seatlist += ', ' + seat[i];
+													seatlist += ', ' + studio + seat[i];
 												}
 											}
 										}
@@ -553,7 +553,6 @@ var app = new Framework7({
 							var context = {
 								title: obj['title'],
 								date: obj['showdate'],
-								studio: studio,
 								showtime: obj['showtime'],
 								seatlist: seatlist,
 								qty: qty,
